@@ -31,12 +31,15 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
             HasItEnded();
+			//if it matches return false and end the loop otherwise continue it 
             if (isOver)
             {
+				//stops loop
 				return false;
             }
 			else
 			{
+				//continue the loop
                 return true;
             }
            
@@ -44,6 +47,7 @@ namespace NodeCanvas.Tasks.Conditions {
 
 		private void HasItEnded()
 		{
+			//check if it matches the number of searched locations
 			if (requiredNumberOfLocation.value == NumberOfSearchedLocation.value)
 			{
 				isOver = true;
