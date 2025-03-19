@@ -29,7 +29,9 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			walkToLocation();
-		}
+			isItOver();
+
+        }
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
@@ -43,7 +45,9 @@ namespace NodeCanvas.Tasks.Actions {
 
 		private void walkToLocation()
 		{
+			//walk to the direction of the current destination
 			NavAgent.value.SetDestination(CurrentDestination.value.position);
+			//check distanc , if its close enough them end action
 			if(Vector3.Distance(agent.transform.position,CurrentDestination.value.position) <  0.5f)
 			{
 				Debug.Log("arrived");
@@ -52,6 +56,8 @@ namespace NodeCanvas.Tasks.Actions {
 		}
 		private void isItOver()
 		{
+			//here it checks first if its close to the exit of the store but it also checks if the current location is the same as the end platform to
+			//extra make sure  its the correct location
             if (Vector3.Distance(agent.transform.position, CurrentDestination.value.position) < 0.5f && 
 				CurrentDestination.value.position == endLocation.value.position)
             {

@@ -18,6 +18,7 @@ namespace NodeCanvas.Tasks.Conditions {
 
 		//Called whenever the condition gets enabled.
 		protected override void OnEnable() {
+			//check if the character has compared all of the milk prices
 			if(NumberOfSearchedLocation.value >= requiredNumberOfLocation)
 			{
 				CurrentDestination.value = ExitLocation.value;

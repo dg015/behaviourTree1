@@ -16,7 +16,6 @@ namespace NodeCanvas.Tasks.Actions {
         public BBParameter<float> SearchTimer;
         public BBParameter<int> SearchedLocations;
         public float CurrentTime;
-		public bool TimerComplete;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -28,22 +27,21 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
+			//reset variables
 			CurrentTime = 0;
-			TimerComplete = false;
             //EndAction(true);
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			timer();
-			if(TimerComplete)
-			{
-				ChooseNextLocation();
-            }
+
+            
 		}
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
+			//increment by one when the code stops, which means the character has finished looking for the milk to compare
 			SearchedLocations.value++;
 		}
 
@@ -53,6 +51,7 @@ namespace NodeCanvas.Tasks.Actions {
 		}
 		private void timer()
 		{
+			//if the current timer has not reached the required value increases the timer, otherwise choose new location
 			if(CurrentTime <= SearchTimer.value)
 			{
 				CurrentTime += Time.deltaTime;
@@ -60,17 +59,22 @@ namespace NodeCanvas.Tasks.Actions {
 			}
 			else
 			{
-                TimerComplete = true;
+                //if the timer is complete choose a new location
+                ChooseNextLocation();
             }
 
 		}
 
 		private void ChooseNextLocation()
 		{
+			//generate a random number so it feels more natural
 			int NextLocationId = Random.Range(0, 3);
 			switch(NextLocationId)
 			{
 				case 0:
+					//if the character is already at the location skip it, otherwise set the as the new locaiton
+					// I check if the player is at the platform by checking their current position is close enough to the platform im checking for
+					//this is for all switch cases
 					if(Vector3.Distance(Platform.value.position, agent.transform.position) >1f)
 					{
 						Debug.Log("platform 1 chosen");
@@ -114,7 +118,6 @@ namespace NodeCanvas.Tasks.Actions {
                     }
 					break;
             }
-
 		}
 	}
 }
