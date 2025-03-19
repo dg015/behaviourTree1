@@ -16,7 +16,7 @@ namespace NodeCanvas.Tasks.Actions {
         public BBParameter<float> SearchTimer;
         public BBParameter<int> SearchedLocations;
         public float CurrentTime;
-
+		public bool TimerComplete;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -29,13 +29,17 @@ namespace NodeCanvas.Tasks.Actions {
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 			CurrentTime = 0;
-
+			TimerComplete = false;
             //EndAction(true);
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			timer();
+			if(TimerComplete)
+			{
+				ChooseNextLocation();
+            }
 		}
 
 		//Called when the task is disabled.
@@ -52,7 +56,12 @@ namespace NodeCanvas.Tasks.Actions {
 			if(CurrentTime <= SearchTimer.value)
 			{
 				CurrentTime += Time.deltaTime;
+				
 			}
+			else
+			{
+                TimerComplete = true;
+            }
 
 		}
 
@@ -66,6 +75,7 @@ namespace NodeCanvas.Tasks.Actions {
 					{
 						Debug.Log("platform 1 chosen");
 						CurrentDestination.value.position = Platform.value.position;
+						EndAction(true);
 					}
 					else
 					{
@@ -80,6 +90,7 @@ namespace NodeCanvas.Tasks.Actions {
                     {
                         Debug.Log("platform 2 chosen");
                         CurrentDestination.value.position = Platform1.value.position;
+                        EndAction(true);
                     }
                     else
                     {
@@ -93,6 +104,7 @@ namespace NodeCanvas.Tasks.Actions {
                     {
                         Debug.Log("platform 3 chosen");
                         CurrentDestination.value.position = Platform2.value.position;
+                        EndAction(true);
                     }
                     else
                     {
