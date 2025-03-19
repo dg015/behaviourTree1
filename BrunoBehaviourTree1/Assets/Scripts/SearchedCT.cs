@@ -25,11 +25,6 @@ namespace NodeCanvas.Tasks.Conditions {
 			}
 		}
 
-		//Called whenever the condition gets disabled.
-		protected override void OnDisable() {
-			
-		}
-
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {

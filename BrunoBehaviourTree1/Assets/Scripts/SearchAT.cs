@@ -50,10 +50,6 @@ namespace NodeCanvas.Tasks.Actions {
 
         }
 
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
-		}
 		private void timer()
 		{
 			//if the current timer has not reached the required value increases the timer, otherwise choose new location

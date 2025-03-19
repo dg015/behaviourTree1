@@ -1690,7 +1690,7 @@ MonoBehaviour:
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"SearchTimer":{"_value":5.0,"_name":"SearchTimer","_id":"d7da55e9-ff3c-4cde-b06a-d2f1136ece8e","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"SearchedLocations":{"_name":"SearchedLocations","_id":"78c99ac9-dbac-41db-a42e-836ae283b1ab","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"CurrentDestination":{"_name":"CurrentDestination","_id":"a623841b-bf8b-4231-b5d3-1668bbe44eb2","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"MaxNumberOfSearches":{"_value":3,"_name":"MaxNumberOfSearches","_id":"b8e04ee7-ad88-4c0e-bc69-27d2e08d7e81","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"MaxNumberOfSearches":{"_value":6,"_name":"MaxNumberOfSearches","_id":"b8e04ee7-ad88-4c0e-bc69-27d2e08d7e81","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences:
   - {fileID: 0}
@@ -1716,7 +1716,7 @@ MonoBehaviour:
   - _json: '{"_name":"CurrentDestination","_id":"a623841b-bf8b-4231-b5d3-1668bbe44eb2","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references: []
-  - _json: '{"_value":3,"_name":"MaxNumberOfSearches","_id":"b8e04ee7-ad88-4c0e-bc69-27d2e08d7e81","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
+  - _json: '{"_value":6,"_name":"MaxNumberOfSearches","_id":"b8e04ee7-ad88-4c0e-bc69-27d2e08d7e81","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!4 &1700534492
