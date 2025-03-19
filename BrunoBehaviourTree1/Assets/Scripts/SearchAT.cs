@@ -2,20 +2,23 @@ using NodeCanvas.Framework;
 using NodeCanvas.Tasks.Conditions;
 using ParadoxNotion.Design;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace NodeCanvas.Tasks.Actions {
 
 	public class SearchAT : ActionTask {
 
-		public BBParameter<Transform> Platform;
-        public BBParameter<Transform> Platform1;
-        public BBParameter<Transform> Platform2;
+		public Transform Platform;
+        public Transform Platform1;
+        public Transform Platform2;
         public BBParameter<Transform> PlatformExit;
-        public BBParameter<Transform> CurrentDestination;
+        public BBParameter<Vector3> CurrentDestination;
         public BBParameter<float> SearchTimer;
         public BBParameter<int> SearchedLocations;
         public float CurrentTime;
+
+		public Image image;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -35,7 +38,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			timer();
-
+			image.fillAmount = CurrentTime / 5;
             
 		}
 
@@ -43,7 +46,9 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnStop() {
 			//increment by one when the code stops, which means the character has finished looking for the milk to compare
 			SearchedLocations.value++;
-		}
+			image.fillAmount = 0;
+
+        }
 
 		//Called when the task is paused.
 		protected override void OnPause() {
@@ -75,10 +80,10 @@ namespace NodeCanvas.Tasks.Actions {
 					//if the character is already at the location skip it, otherwise set the as the new locaiton
 					// I check if the player is at the platform by checking their current position is close enough to the platform im checking for
 					//this is for all switch cases
-					if(Vector3.Distance(Platform.value.position, agent.transform.position) >1f)
+					if(Vector3.Distance(Platform.position, agent.transform.position) >1f)
 					{
 						Debug.Log("platform 1 chosen");
-						CurrentDestination.value.position = Platform.value.position;
+						CurrentDestination.value = Platform.position;
 						EndAction(true);
 					}
 					else
@@ -90,10 +95,10 @@ namespace NodeCanvas.Tasks.Actions {
 					break; 
 				
 				case 1:
-                    if (Vector3.Distance(Platform1.value.position, agent.transform.position) > 1f)
+                    if (Vector3.Distance(Platform1.position, agent.transform.position) > 1f)
                     {
                         Debug.Log("platform 2 chosen");
-                        CurrentDestination.value.position = Platform1.value.position;
+                        CurrentDestination.value = Platform1.position;
                         EndAction(true);
                     }
                     else
@@ -104,10 +109,10 @@ namespace NodeCanvas.Tasks.Actions {
                     }
                     break;
 					case 2:
-                    if (Vector3.Distance(Platform2.value.position, agent.transform.position) > 1f)
+                    if (Vector3.Distance(Platform2.position, agent.transform.position) > 1f)
                     {
                         Debug.Log("platform 3 chosen");
-                        CurrentDestination.value.position = Platform2.value.position;
+                        CurrentDestination.value = Platform2.position;
                         EndAction(true);
                     }
                     else

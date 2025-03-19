@@ -7,7 +7,7 @@ namespace NodeCanvas.Tasks.Conditions {
 	public class SearchedCT : ConditionTask {
 		public BBParameter<int> NumberOfSearchedLocation;
 		public BBParameter <int> requiredNumberOfLocation;
-        public BBParameter<Transform> CurrentDestination;
+        public BBParameter<Vector3> CurrentDestination;
 		public BBParameter<Transform> ExitLocation;
 
         //Use for initialization. This is called only once in the lifetime of the task.
@@ -21,7 +21,7 @@ namespace NodeCanvas.Tasks.Conditions {
 			//check if the character has compared all of the milk prices
 			if(NumberOfSearchedLocation.value >= requiredNumberOfLocation.value)
 			{
-				CurrentDestination.value = ExitLocation.value;
+				CurrentDestination.value = ExitLocation.value.position;
 			}
 		}
 
